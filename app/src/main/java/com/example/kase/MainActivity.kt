@@ -7,8 +7,9 @@ import com.example.kase.databinding.ActivityMainBinding
 import com.example.kase.model.NumberViewModel
 
 /**
- * viewBinding
+ * viewBinding & dataBinding
  * implementation 'androidx.fragment:fragment-ktx:1.5.0' (for viewModels())
+ * convert activity_main to data binding layout
  */
 
 class MainActivity : AppCompatActivity() {
@@ -18,19 +19,11 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = ActivityMainBinding.inflate(layoutInflater)
+        binding.lifecycleOwner = this
+        binding.viewModel = numberViewModel
+
         setContentView(binding.root)
-
-        numberViewModel.number.observe(this) {
-            binding.textView.text = numberViewModel.number.value.toString()
-        }
-
-        binding.button1.setOnClickListener {
-            numberViewModel.setNumber(1)
-        }
-
-        binding.button2.setOnClickListener {
-            numberViewModel.setNumber(2)
-        }
     }
 }
