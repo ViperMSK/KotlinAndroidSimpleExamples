@@ -3,7 +3,7 @@ package com.example.kase.data
 import com.example.kase.model.Task
 
 object Datasource {
-    val taskList: List<Task> = listOf(
+    val taskList: MutableList<Task> = mutableListOf(
         Task("Default first task", true),
         Task("Default second task", false),
         Task("Default third task", true),
