@@ -2,6 +2,9 @@ package com.example.kase
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.core.content.ContentProviderCompat.requireContext
 import com.example.kase.databinding.ActivityMainBinding
@@ -15,23 +18,23 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        binding.textView.setOnClickListener {
-            showAlertDialog()
-        }
     }
 
-    private fun showAlertDialog() {
-        MaterialAlertDialogBuilder(this)
-            .setTitle("Question")
-            .setMessage("YES or NO?")
-            .setCancelable(false)
-            .setNegativeButton("[NO]") { _, _ ->
-                Toast.makeText(this, "The answer is NO", Toast.LENGTH_SHORT).show()
-            }
-            .setPositiveButton("[YES]") { _, _ ->
-                Toast.makeText(this, "The answer is YES", Toast.LENGTH_SHORT).show()
-            }
-            .show()
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        val inflater: MenuInflater = menuInflater
+        inflater.inflate(R.menu.overflow_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.option_1 -> Toast.makeText(this, "Option 1 selected", Toast.LENGTH_SHORT).show()
+            R.id.option_2 -> Toast.makeText(this, "Option 2 selected", Toast.LENGTH_SHORT).show()
+            R.id.option_21 -> Toast.makeText(this, "Option 2.1 selected", Toast.LENGTH_SHORT).show()
+            R.id.option_22 -> Toast.makeText(this, "Option 2.2 selected", Toast.LENGTH_SHORT).show()
+            R.id.option_23 -> Toast.makeText(this, "Option 2.3 selected", Toast.LENGTH_SHORT).show()
+            R.id.option_3 -> Toast.makeText(this, "Option 3 selected", Toast.LENGTH_SHORT).show()
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
