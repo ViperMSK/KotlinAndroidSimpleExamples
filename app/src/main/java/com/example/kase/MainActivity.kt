@@ -10,6 +10,7 @@ import com.example.kase.model.NumberViewModel
  * viewBinding & dataBinding
  * implementation 'androidx.fragment:fragment-ktx:1.5.0' (for viewModels())
  * convert activity_main to data binding layout
+ * plugin id 'kotlin-kapt' (for BindingAdapters)
  */
 
 class MainActivity : AppCompatActivity() {
