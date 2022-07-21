@@ -21,14 +21,17 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val adapter = TaskAdapter(Datasource.taskList)
+
         binding.apply {
-            recyclerView.adapter = TaskAdapter(Datasource.taskList)
+            recyclerView.adapter = adapter
             recyclerView.layoutManager = LinearLayoutManager(this@MainActivity)
             recyclerView.setHasFixedSize(true)
 
             button.setOnClickListener {
+                val oldList: List<Task> = Datasource.taskList.toList()
                 Datasource.taskList.add(1, Task("New task in second position!", false))
-                recyclerView.adapter?.notifyItemInserted(1)
+                adapter.updateList(oldList)
             }
         }
     }

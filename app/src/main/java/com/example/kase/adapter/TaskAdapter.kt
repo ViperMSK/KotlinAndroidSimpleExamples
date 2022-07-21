@@ -5,8 +5,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kase.R
+import com.example.kase.data.Datasource
 import com.example.kase.databinding.TaskListItemBinding
 import com.example.kase.model.Task
 
@@ -43,8 +45,27 @@ class TaskAdapter(private val taskList: List<Task>) :
 
     override fun getItemCount() = taskList.size
 
-//    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-//    override fun getItemCount(): Int {
-//        return taskList.size
-//    }
+    fun updateList(oldList: List<Task>) {
+        val diffCallback = TaskDiffUtilCallback(oldList, taskList)
+        val diffResult = DiffUtil.calculateDiff(diffCallback)
+        diffResult.dispatchUpdatesTo(this)
+    }
+}
+
+class TaskDiffUtilCallback(
+    private val oldList: List<Task>,
+    private val newList: List<Task>
+) : DiffUtil.Callback() {
+
+    override fun getOldListSize(): Int = oldList.size
+
+    override fun getNewListSize(): Int = newList.size
+
+    override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+        return oldList[oldItemPosition].taskText == newList[newItemPosition].taskText
+    }
+
+    override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+        return oldList[oldItemPosition] == newList[newItemPosition]
+    }
 }
