@@ -7,25 +7,38 @@ import android.widget.CheckBox
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kase.R
+import com.example.kase.databinding.TaskListItemBinding
 import com.example.kase.model.Task
 
 class TaskAdapter(private val taskList: List<Task>) :
     RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
 
-    inner class TaskViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val textView: TextView = view.findViewById(R.id.textView)
-        val checkBox: CheckBox = view.findViewById(R.id.checkBox)
+    class TaskViewHolder(private val binding: TaskListItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(task: Task) {
+            binding.textView.text = task.taskText
+            binding.checkBox.isChecked = task.isDone
+        }
     }
 
+    /**
+     * Create new [RecyclerView] item views (invoked by the layout manager)
+     */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
-        val view: View =
-            LayoutInflater.from(parent.context).inflate(R.layout.task_list_item, parent, false)
-        return TaskViewHolder(view)
+        return TaskViewHolder(
+            TaskListItemBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
     }
 
+    /**
+     * Replaces the contents of a view (invoked by the layout manager)
+     */
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
-        holder.textView.text = taskList[position].taskText
-        holder.checkBox.isChecked = taskList[position].isDone
+        holder.bind(taskList[position])
     }
 
     override fun getItemCount() = taskList.size
