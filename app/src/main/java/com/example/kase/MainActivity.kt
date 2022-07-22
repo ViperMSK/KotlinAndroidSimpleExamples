@@ -21,17 +21,19 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val adapter = TaskAdapter(Datasource.taskList)
-
         binding.apply {
+            val adapter = TaskAdapter()
             recyclerView.adapter = adapter
+            adapter.updateList(Datasource.taskList)
             recyclerView.layoutManager = LinearLayoutManager(this@MainActivity)
             recyclerView.setHasFixedSize(true)
 
             button.setOnClickListener {
-                val oldList: List<Task> = Datasource.taskList.toList()
-                Datasource.taskList.add(1, Task("New task in second position!", false))
-                adapter.updateList(oldList)
+                var newList: MutableList<Task>? = Datasource.taskList.toList() as MutableList<Task>
+                newList!!.add(1, Task("New task in second position!", false))
+                adapter.updateList(newList)
+                Datasource.taskList = newList
+                newList = null
             }
         }
     }
