@@ -14,5 +14,5 @@ interface TaskDao {
     fun addTask(task: Task)
 
     @Query("SELECT * FROM tasks_table ORDER BY id ASC")
-    fun fetchAllTasks(): List<Task>
+    fun fetchAllTasks(): Flow<List<Task>>
 }

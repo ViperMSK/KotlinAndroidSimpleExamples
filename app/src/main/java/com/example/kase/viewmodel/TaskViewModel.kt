@@ -7,7 +7,7 @@ import com.example.kase.data.TaskDao
 import kotlinx.coroutines.flow.Flow
 
 class TaskViewModel(private val taskDao: TaskDao): ViewModel() {
-    fun getAllTasks(): List<Task> = taskDao.fetchAllTasks()
+    fun getAllTasks(): Flow<List<Task>> = taskDao.fetchAllTasks()
 }
 
 class TaskViewModelFactory(
