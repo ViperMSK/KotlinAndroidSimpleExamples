@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import com.example.kase.databinding.FragmentSecondBinding
+import com.example.kase.navigation.navigator
 
 class SecondFragment : Fragment(R.layout.fragment_second) {
     private lateinit var binding: FragmentSecondBinding
@@ -13,19 +14,24 @@ class SecondFragment : Fragment(R.layout.fragment_second) {
         binding = FragmentSecondBinding.bind(view)
 
         binding.btnForward.setOnClickListener {
-            val firstFragment = FirstFragment.newInstance()
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.fragmentContainerView, firstFragment)
-                .addToBackStack(null)
-                .commit()
+            onForwardPressed(FirstFragment.newInstance())
         }
 
         binding.btnBack.setOnClickListener {
-            requireActivity().onBackPressed()
+            onBackPressed()
         }
+    }
+
+    private fun onForwardPressed(fragment: Fragment) {
+        navigator().goToFragment(fragment)
+    }
+    private fun onBackPressed() {
+        navigator().goBack()
     }
 
     companion object {
         fun newInstance() = SecondFragment()
     }
+
+
 }
