@@ -8,6 +8,7 @@
     tools:context=".SecondFragment">
 
     <TextView
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="160dp"
         android:text="2"

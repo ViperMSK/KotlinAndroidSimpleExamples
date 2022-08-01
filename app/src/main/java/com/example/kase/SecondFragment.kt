@@ -1,10 +1,11 @@
 package com.example.kase
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.kase.databinding.FragmentSecondBinding
-import com.example.kase.navigation.navigator
 
 class SecondFragment : Fragment(R.layout.fragment_second) {
     private lateinit var binding: FragmentSecondBinding
@@ -13,25 +14,19 @@ class SecondFragment : Fragment(R.layout.fragment_second) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentSecondBinding.bind(view)
 
+        var message = ""
+        arguments?.let {
+            message = it.getString("args2").toString()
+            binding.textView.text = "${binding.textView.text} + $message"
+        }
+
         binding.btnForward.setOnClickListener {
-            onForwardPressed(FirstFragment.newInstance())
+            val action = SecondFragmentDirections.actionSecondFragmentToFirstFragment("From 2nd")
+            findNavController().navigate(action)
         }
 
         binding.btnBack.setOnClickListener {
-            onBackPressed()
+            requireActivity().onBackPressed()
         }
     }
-
-    private fun onForwardPressed(fragment: Fragment) {
-        navigator().goToFragment(fragment)
-    }
-    private fun onBackPressed() {
-        navigator().goBack()
-    }
-
-    companion object {
-        fun newInstance() = SecondFragment()
-    }
-
-
 }
