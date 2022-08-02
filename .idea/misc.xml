@@ -3,8 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/VGPershin/AndroidStudioProjects/KASE/app/src/main/res/layout/activity_blue.xml" value="0.31431159420289856" />
+        <entry key="..\:/Users/VGPershin/AndroidStudioProjects/KASE/app/src/main/res/layout/activity_green.xml" value="0.31431159420289856" />
         <entry key="..\:/Users/VGPershin/AndroidStudioProjects/KASE/app/src/main/res/layout/activity_main.xml" value="0.33" />
-        <entry key="..\:/Users/VGPershin/AndroidStudioProjects/KASE/app/src/main/res/layout/task_list_item.xml" value="0.33" />
+        <entry key="..\:/Users/VGPershin/AndroidStudioProjects/KASE/app/src/main/res/layout/activity_red.xml" value="0.31431159420289856" />
+        <entry key="..\:/Users/VGPershin/AndroidStudioProjects/KASE/app/src/main/res/layout/activity_yellow.xml" value="0.31431159420289856" />
+        <entry key="..\:/Users/VGPershin/AndroidStudioProjects/KASE/app/src/main/res/layout/fragment_detail.xml" value="0.33" />
+        <entry key="..\:/Users/VGPershin/AndroidStudioProjects/KASE/app/src/main/res/layout/fragment_first.xml" value="0.31431159420289856" />
+        <entry key="..\:/Users/VGPershin/AndroidStudioProjects/KASE/app/src/main/res/layout/fragment_r_v.xml" value="0.31431159420289856" />
+        <entry key="..\:/Users/VGPershin/AndroidStudioProjects/KASE/app/src/main/res/layout/fragment_second.xml" value="0.15833333333333333" />
+        <entry key="..\:/Users/VGPershin/AndroidStudioProjects/KASE/app/src/main/res/layout/task_list_item.xml" value="0.31431159420289856" />
       </map>
     </option>
   </component>
